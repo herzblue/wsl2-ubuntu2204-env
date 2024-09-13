@@ -449,6 +449,60 @@ Python 버전 관리에는 `pyenv` 뿐만 아니라 `update-alternatives` 도 �
 <br/>
 <br/>
 
+
+## 2-4. kernel in jupyter
+
+- poetry로 가상환경을 만들고 jupyter kernel로 등록하는 방법을 알아보자.
+
+VSCode에서 바로 Poetry로 만든 가상 환경에서 작업 시에는 Poetry의 가상 환경 virtualenv가 인식이 되지 않는 문제가 있다. 이는 바로 Poetry가 작업 환경이 아닌 다른 로컬 폴더에 가상 환경을 저장하기 때문인데, 이를 수정하기 위해서는 작업 환경으로 가상 환경 폴더를 이동시켜주면 된다.
+
+```bash
+
+poetry config virtualenvs.in-project true # 가상환경을 프로젝트 폴더 내에 생성
+poetry config virtualenvs.path "./.venv" # 가상환경 경로 설정
+poetry install
+
+```
+
+- poetry로 가상환경 만들기
+- jupyter kernel로 가상환경 등록하기
+
+```bash
+# jupyter, ipykernel 설치
+# poetry add jupyter ipykernel
+
+# poetry 가상환경 activate
+poetry shell
+
+# 생성한 가장환경 정보 확인
+poetry env info
+
+# activate된 가상환경 및 생선한 가상환경 확인
+poetry env list
+
+# 1. 생성된 가상환경 경로 확인
+poetry env info --path
+
+# 2. 가상환경 생성
+# python -m ipykernel install --user --name [가상환경 이름] --display-name "[jupyter에 표시될 kernel의 이름]"
+# python에서 ipykernel 모듈을 실행(-m)하여 install 작업을 한다는 의미
+
+# jupyter kernel로 잘들어갔는지 확인
+jupyter kernelspec list
+
+# vscode 가상환경 추가
+# Python: Select Interpreter -> 해당 virtual env를 '+인터프리터 경로 입력'에서 추가
+
+# 가상 환경 삭제
+poetry env remove [경로]
+
+
+```
+
+
+<br/>
+<br/>
+
 # 3. GIT Credential
 
 ## WSL2에서 Windows Git Credential Manager 사용하기
