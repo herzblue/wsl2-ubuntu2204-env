@@ -1,27 +1,22 @@
 
-# WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
-<summary>목차</summary>
+# 1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
+<!-- 목차 생성 -->
+## 1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
 
-- [WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#wsl2-ubuntu-22043---초기-설정-가이드)
-  - [WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드](#wsl2-ubuntu-22043에-zsh-설치-및-powerlevel10k-테마-설정-가이드)
-  - [WSL2 Ubuntu 22.04.3 환경에서 Poetry를 활용한 Python 설정 가이드](#wsl2-ubuntu-22043-환경에서-poetry를-활용한-python-설정-가이드)
-  - [Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#poetry와-함께-다양한-python-버전-관리하기-pyenv-활용-가이드-38-최신-3119-버전-예시)
-- [python 설치에 필요한 라이브러리 설치](#python-설치에-필요한-라이브러리-설치)
-  - [Poetry와 함께 다양한 Python 버전 관리하기: pyenv \& update-alternatives 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#poetry와-함께-다양한-python-버전-관리하기-pyenv--update-alternatives-활용-가이드-38-최신-3119-버전-예시)
+**목차**
+
+- [1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-wsl2-ubuntu-22043---초기-설정-가이드)
+  - [1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-1-wsl2-ubuntu-22043---초기-설정-가이드)
+  - [1-2. WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드](#1-2-wsl2-ubuntu-22043에-zsh-설치-및-powerlevel10k-테마-설정-가이드)
+- [2. python 설치에 필요한 라이브러리 설치](#2-python-설치에-필요한-라이브러리-설치)
+  - [2-1. Poetry를 활용한 Python 설정 가이드](#2-1-poetry를-활용한-python-설정-가이드)
+  - [2-2. Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#2-2-poetry와-함께-다양한-python-버전-관리하기-pyenv-활용-가이드-38-최신-3119-버전-예시)
+  - [2-3. 다양한 Python 버전 관리하기: update-alternatives 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#2-3-다양한-python-버전-관리하기-update-alternatives-활용-가이드-38-최신-3119-버전-예시)
+- [3. GIT Credential](#3-git-credential)
   - [WSL2에서 Windows Git Credential Manager 사용하기](#wsl2에서-windows-git-credential-manager-사용하기)
-  - [Google Cloud 설정](#google-cloud-설정)
-  - [Linux에 gcloud CLI 설치하기](#linux에-gcloud-cli-설치하기)
-    - [1. Python 버전 확인](#1-python-버전-확인)
-    - [2. gcloud CLI 다운로드](#2-gcloud-cli-다운로드)
-    - [3. 압축 해제](#3-압축-해제)
-    - [4. 설치 스크립트 실행](#4-설치-스크립트-실행)
-    - [5. 터미널 재시작](#5-터미널-재시작)
-    - [6. gcloud CLI 초기화](#6-gcloud-cli-초기화)
-    - [7. 추가 구성 요소 설치 (선택 사항)](#7-추가-구성-요소-설치-선택-사항)
-    - [설치 확인](#설치-확인)
-  
+- [4. Google Cloud CLI](#4-google-cloud-cli)
 
-## WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드
+## 1-2. WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드
 
 **1. zsh 설치:**
 
@@ -92,12 +87,13 @@ source ~/.zshrc
   p10k configure
   ```
 
-이제 WSL2 Ubuntu 22.04.3 환경에서 멋지게 꾸며진 zsh 터미널을 사용할 수 있습니다! 😊
 
 <br/>
 <br/>
 
-## WSL2 Ubuntu 22.04.3 환경에서 Poetry를 활용한 Python 설정 가이드
+# 2. python 설치에 필요한 라이브러리 설치
+
+## 2-1. Poetry를 활용한 Python 설정 가이드
 
 Poetry는 Python 프로젝트의 의존성 관리와 패키징을 간편하게 해주는 도구입니다. WSL2 Ubuntu 22.04.3에서 Poetry를 사용하여 Python 프로젝트를 설정하는 방법을 단계별로 알려드리겠습니다.
 
@@ -260,11 +256,11 @@ python src/my_project/main.py
 * Poetry는 다양한 명령어와 옵션을 제공합니다.  `poetry --help`  명령어를 사용하여 사용 가능한 명령어 목록을 확인하거나,  [https://python-poetry.org/docs/](https://python-poetry.org/docs/) 에서 공식 문서를 참고하세요.
 * VS Code와 Poetry를 함께 사용하면 더욱 편리한 개발 환경을 구축할 수 있습니다. "Python" 확장 프로그램을 설치하고, Poetry를 사용하여 생성한 가상 환경을 VS Code의 Python 인터프리터로 설정하면 됩니다.
 
-이제 WSL2 Ubuntu 22.04.3 환경에서 Poetry를 사용하여 Python 프로젝트를 효율적으로 관리하고 개발할 수 있습니다! 😊 궁금한 점이 있다면 언제든지 질문해 주세요! 
+이제 WSL2 Ubuntu 22.04.3 환경에서 Poetry를 사용하여 Python 프로젝트를 효율적으로 관리하고 개발할 수 있습니다.
 
 <br/>
 
-## Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)
+## 2-2. Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)
 
 Poetry는 훌륭한 Python 프로젝트 관리 도구이지만, Python 버전 자체를 관리하는 기능은 제공하지 않습니다. pyenv를 함께 사용하면 프로젝트별로 필요한 Python 버전을 쉽게 설치하고 전환하여 Poetry 환경을 유연하게 구성할 수 있습니다.
 
@@ -330,14 +326,14 @@ Poetry는 훌륭한 Python 프로젝트 관리 도구이지만, Python 버전 �
 
 - 여러 Python 버전을 사용할 때는 각 버전의 의존성 패키지가 서로 호환되지 않을 수 있습니다.  프로젝트별로 가상 환경을 사용하여 의존성 충돌을 방지하는 것이 중요합니다.
 
-pyenv를 활용하여 3.8 최신, 3.11.9 버전을 포함한 다양한 Python 버전을 효율적으로 관리하고, Poetry와 함께 편리하게 Python 프로젝트를 개발하세요! 😊 
 
 
 <br/>
 <br/>
 
 
-## Poetry와 함께 다양한 Python 버전 관리하기: pyenv & update-alternatives 활용 가이드 (3.8 최신, 3.11.9 버전 예시)
+
+## 2-3. 다양한 Python 버전 관리하기: update-alternatives 활용 가이드 (3.8 최신, 3.11.9 버전 예시)
 
 Python 버전 관리에는 `pyenv` 뿐만 아니라 `update-alternatives` 도 활용할 수 있습니다.  `update-alternatives`는 시스템에 여러 버전의 프로그램이 설치되어 있을 때, 어떤 버전을 기본으로 사용할지 설정하는 데 사용되는 Ubuntu 시스템 도구입니다. `pyenv`가 Python 버전을 격리된 환경에 설치하고 관리하는데 중점을 둔다면,  `update-alternatives`는 시스템 레벨에서 Python 버전을 전환하는 데 유용합니다.
 
@@ -406,10 +402,12 @@ Python 버전 관리에는 `pyenv` 뿐만 아니라 `update-alternatives` 도 �
 - `update-alternatives`는 `python`, `pip` 등 다른 Python 관련 명령어에도 적용할 수 있습니다. 
 - 여러 버전을 관리할 때는 버전 충돌에 유의하고, 필요에 따라 `pyenv`와 `update-alternatives`를 적절히 활용하는 것이 좋습니다. 
 
-이제 `pyenv`와 `update-alternatives`를 함께 사용하여 다양한 Python 버전을 관리하고 Poetry를 통해 프로젝트를 효율적으로 개발할 수 있습니다! 😊 궁금한 점은 언제든지 질문하세요! 
+이제 `pyenv`와 `update-alternatives`를 함께 사용하여 다양한 Python 버전을 관리하고 Poetry를 통해 프로젝트를 효율적으로 개발할 수 있습니다.
 
 <br/>
 <br/>
+
+# 3. GIT Credential
 
 ## WSL2에서 Windows Git Credential Manager 사용하기
 
@@ -468,9 +466,11 @@ Windows에 Git이 설치되어 있다면, Windows용으로 제공되는 `git-cre
 <br/>
 <br/>
 
-## Google Cloud 설정
 
-## Linux에 gcloud CLI 설치하기
+
+# 4. Google Cloud CLI
+
+## Google Cloud 설정: gcloud CLI 설치하기
 
 이 가이드는 Linux 시스템에 Google Cloud CLI를 설치하는 방법을 설명합니다. gcloud CLI에는 `gcloud`, `gsutil`, `bq` 명령줄 도구가 포함되어 있습니다.
 
@@ -543,7 +543,7 @@ gcloud components install kubectl
 gcloud --version
 ```
 
-이제 gcloud CLI를 사용하여 Google Cloud Platform 리소스를 관리할 수 있습니다! 😊 
+이제 gcloud CLI를 사용하여 Google Cloud Platform 리소스를 관리할 수 있습니다.
 
 
 
