@@ -8,6 +8,7 @@
 - [1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-wsl2-ubuntu-22043---초기-설정-가이드)
   - [1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-1-wsl2-ubuntu-22043---초기-설정-가이드)
   - [1-2. WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드](#1-2-wsl2-ubuntu-22043에-zsh-설치-및-powerlevel10k-테마-설정-가이드)
+  - [1-3. zsh 플러그인 - Auto-suggestions: 똑똑한 명령어 자동완성](#1-3-zsh-플러그인---auto-suggestions-똑똑한-명령어-자동완성)
 - [2. python 설치에 필요한 라이브러리 설치](#2-python-설치에-필요한-라이브러리-설치)
   - [2-1. Poetry를 활용한 Python 설정 가이드](#2-1-poetry를-활용한-python-설정-가이드)
   - [2-2. Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#2-2-poetry와-함께-다양한-python-버전-관리하기-pyenv-활용-가이드-38-최신-3119-버전-예시)
@@ -86,6 +87,47 @@ source ~/.zshrc
   ```bash
   p10k configure
   ```
+
+## 1-3. zsh 플러그인 - Auto-suggestions: 똑똑한 명령어 자동완성
+
+zsh Auto-suggestions 플러그인은 자주 사용하는 명령어 기록을 기반으로 다음에 입력할 명령어를 예측하여 추천해주는 편리한 기능입니다. 예를 들어, `py`만 입력해도 `python manage.py runserver`와 같이 자주 사용하는 전체 명령어를 자동으로 추천해줍니다. 오른쪽 방향키를 누르면 추천된 명령어가 자동으로 완성되어 시간을 절약할 수 있습니다.
+
+**1. 설치 방법 (Oh My Zsh)**
+
+1. **저장소 복제:**
+   ```bash
+   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+   ```
+
+2. **플러그인 활성화:**
+   - `~/.zshrc` 파일을 편집합니다. (`vi ~/.zshrc`)
+   -  `plugins=( ... )`  배열 안에  `zsh-autosuggestions` 를 추가합니다.
+     ```bash
+     plugins=(
+       # 다른 플러그인...
+       zsh-autosuggestions
+     )
+     ```
+   -  파일을 저장하고 vi 편집기를 종료합니다 (`:wq!`).
+
+3. **터미널 재시작 또는 설정 파일 다시 로드:**
+   ```bash
+   source ~/.zshrc
+   ```
+
+**2. 사용법 및 설정**
+
+- **명령어 추천:** 명령어를 입력하기 시작하면, 과거에 사용했던 명령어 기록을 바탕으로 예측된 명령어가 흐릿하게 표시됩니다. 오른쪽 방향키를 눌러 해당 명령어를 자동 완성할 수 있습니다.
+- **제안 하이라이트 스타일:**  `ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE`  환경 변수를 설정하여 추천된 명령어가 표시되는 스타일을 변경할 수 있습니다.
+    - 예시:
+        ```bash
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+        ```
+- **제안 전략:**  `ZSH_AUTOSUGGEST_STRATEGY`  환경 변수를 사용하여 명령어 추천 전략을 선택할 수 있습니다.
+    - `history`:  가장 최근에 사용한 명령어를 우선적으로 추천합니다. (기본값)
+    - `completion`:  완성된 명령어를 추천합니다. (zpty 모듈 필요)
+    - `match_prev_cmd`:  가장 최근에 실행한 명령어와 일치하는 항목 중 가장 최근 것을 추천합니다.
+    - 여러 전략을 조합하여 사용할 수도 있습니다. 예를 들어,  `ZSH_AUTOSUGGEST_STRATEGY=(history completion)`  은  `history` 전략을 우선적으로 사용하고, 일치하는 항목이 없으면  `completion`  전략을 사용합니다. 
 
 
 <br/>
