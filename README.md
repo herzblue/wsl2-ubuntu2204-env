@@ -1,12 +1,11 @@
 
 # 1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
 <!-- 목차 생성 -->
-## 1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
 
 **목차**
 
 - [1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-wsl2-ubuntu-22043---초기-설정-가이드)
-  - [1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-1-wsl2-ubuntu-22043---초기-설정-가이드)
+  - [1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 **가이드**](#1-1-wsl2-ubuntu-22043---초기-설정-가이드)
   - [1-2. WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드](#1-2-wsl2-ubuntu-22043에-zsh-설치-및-powerlevel10k-테마-설정-가이드)
   - [1-3. zsh 플러그인 - Auto-suggestions: 똑똑한 명령어 자동완성](#1-3-zsh-플러그인---auto-suggestions-똑똑한-명령어-자동완성)
 - [2. python 설치에 필요한 라이브러리 설치](#2-python-설치에-필요한-라이브러리-설치)
@@ -16,6 +15,47 @@
 - [3. GIT Credential](#3-git-credential)
   - [WSL2에서 Windows Git Credential Manager 사용하기](#wsl2에서-windows-git-credential-manager-사용하기)
 - [4. Google Cloud CLI](#4-google-cloud-cli)
+
+
+## 1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
+1. microsoft store에서 ubuntu 22.04.3 설치
+
+2. 나의 Ubuntu 버전 확인
+```bash
+cat /etc/os-release
+```
+3.  업데이트 전 혹시 보류 중인 패키지가 있는지 확인하여 해제
+```bash
+sudo apt-mark showhold
+
+# Refresh the apt repo
+sudo apt update
+# Apply all upgrades
+sudo apt upgrade
+
+# 가장 최신 배포 버전을 사용할 수 있는지 확인
+sudo apt dist-upgrade
+
+4. update-manager-core 설치
+```bash
+sudo apt install update-manager-core
+# Prompt 값이 LTS로 되어있지 않은 경우 LTS로 변경
+sudo nano /etc/update-manager/release-upgrades
+## Prompt=lts 확인
+```
+4. 업그레이드
+
+```bash
+# 다음 명령어 수행시 마지막에 업그레이드 여부를 확인 한다.( > y 입력) 이후 Ubuntu가 다시 시작 된다.
+sudo do-release-upgrade -d
+# 수행시 마지막에 업그레이드 여부를 확인 한다. 이때 y를 입력 한다. 
+# 다음 명령어를 통해 22.04 설치 확인
+cat /etc/os-release
+```
+
+<br/>
+<br/>
+
 
 ## 1-2. WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드
 
@@ -302,7 +342,7 @@ python src/my_project/main.py
 
 <br/>
 
-## 2-2. Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)
+## 2-2. Poetry와 pyenv로 파이썬 버전관리 가이드 (3.8 최신, 3.11.9 버전 예시)
 
 Poetry는 훌륭한 Python 프로젝트 관리 도구이지만, Python 버전 자체를 관리하는 기능은 제공하지 않습니다. pyenv를 함께 사용하면 프로젝트별로 필요한 Python 버전을 쉽게 설치하고 전환하여 Poetry 환경을 유연하게 구성할 수 있습니다.
 
@@ -543,6 +583,10 @@ Windows에 Git이 설치되어 있다면, Windows용으로 제공되는 `git-cre
 
 **3. user 설정**
   ```bash
+  git config --global user.name "<사용자 이름>"
+  git config --global user.email "<이메일 주소>"
+
+  # example
   git config --global user.name "herzblue"
   git config --global user.email "herzblue@gmail.com"
   ```
