@@ -1,22 +1,4 @@
-
 # 1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
-<!-- 목차 생성 -->
-
-**목차**
-
-- [1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드](#1-wsl2-ubuntu-22043---초기-설정-가이드)
-  - [1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 **가이드**](#1-1-wsl2-ubuntu-22043---초기-설정-가이드)
-  - [1-2. WSL2 Ubuntu 22.04.3에 zsh 설치 및 powerlevel10k 테마 설정 가이드](#1-2-wsl2-ubuntu-22043에-zsh-설치-및-powerlevel10k-테마-설정-가이드)
-  - [1-3. zsh 플러그인 - Auto-suggestions: 똑똑한 명령어 자동완성](#1-3-zsh-플러그인---auto-suggestions-똑똑한-명령어-자동완성)
-- [2. python 설치에 필요한 라이브러리 설치](#2-python-설치에-필요한-라이브러리-설치)
-  - [2-1. Poetry를 활용한 Python 설정 가이드](#2-1-poetry를-활용한-python-설정-가이드)
-  - [2-2. Poetry와 함께 다양한 Python 버전 관리하기: pyenv 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#2-2-poetry와-함께-다양한-python-버전-관리하기-pyenv-활용-가이드-38-최신-3119-버전-예시)
-  - [2-3. 다양한 Python 버전 관리하기: update-alternatives 활용 가이드 (3.8 최신, 3.11.9 버전 예시)](#2-3-다양한-python-버전-관리하기-update-alternatives-활용-가이드-38-최신-3119-버전-예시)
-- [3. GIT Credential](#3-git-credential)
-  - [WSL2에서 Windows Git Credential Manager 사용하기](#wsl2에서-windows-git-credential-manager-사용하기)
-- [4. Google Cloud CLI](#4-google-cloud-cli)
-
-
 ## 1-1. WSL2 Ubuntu 22.04.3 - 초기 설정 가이드
 1. microsoft store에서 ubuntu 22.04.3 설치
 
@@ -399,7 +381,14 @@ Poetry는 훌륭한 Python 프로젝트 관리 도구이지만, Python 버전 �
 - 현재 활성화된 Python 버전은  `python --version` 또는  `python3 --version`  명령어로 확인할 수 있습니다.
 - pyenv가 관리하는 Python 버전 목록은  `pyenv versions`  명령어로 확인할 수 있습니다.
 
-**7. Poetry와 pyenv 연동 팁**
+**7. 가상환경 삭제**
+- 가상환경 삭제 명령어
+    ```bash
+    poetry env info
+    poetry env remove [가상환경 이름]
+    ```
+
+**8. Poetry와 pyenv 연동 팁**
 
 - **가상 환경 자동 활성화:**  `pyenv virtualenv-init -`  설정을 쉘 환경 설정 파일에 추가하면, Poetry 프로젝트 디렉토리로 이동할 때 자동으로 해당 프로젝트의 가상 환경이 활성화됩니다.
 - **VS Code 연동:**  VS Code의 "Python" 확장 프로그램을 사용하는 경우,  "Python: Select Interpreter"  명령을 사용하여 Poetry가 생성한 가상 환경을 선택할 수 있습니다.
@@ -687,7 +676,7 @@ gcloud --version
 
 
 
-
+<!-- markdownlint-disable-file -->
 
 
 
